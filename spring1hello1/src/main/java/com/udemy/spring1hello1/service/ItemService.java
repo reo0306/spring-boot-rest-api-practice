@@ -39,4 +39,8 @@ public class ItemService {
             if (allItems.get(i).getItemId().equals(itemId)) allItems.set(i, item);
         }
     }
+
+    public void deleteItem(String itemId) {
+        allItems.removeIf(i -> i.getItemId().equals(itemId));
+    }
 }

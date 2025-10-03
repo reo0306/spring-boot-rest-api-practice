@@ -33,4 +33,10 @@ public class ItemController {
     public void updateItem(@RequestBody Item item, @PathVariable("itemId") String itemId) {
         itemService.updateItem(itemId, item);
     }
+
+    @DeleteMapping("/items/{itemId}")
+    public void deleteItem(@PathVariable("itemId") String itemId) {
+        itemService.deleteItem(itemId);
+    }
+
 }
