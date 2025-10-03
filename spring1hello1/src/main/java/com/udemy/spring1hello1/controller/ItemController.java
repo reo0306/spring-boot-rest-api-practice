@@ -28,4 +28,9 @@ public class ItemController {
     public void addItem(@RequestBody Item item) {
         itemService.addItem(item);
     }
+
+    @PutMapping("/items/{itemId}")
+    public void updateItem(@RequestBody Item item, @PathVariable("itemId") String itemId) {
+        itemService.updateItem(itemId, item);
+    }
 }

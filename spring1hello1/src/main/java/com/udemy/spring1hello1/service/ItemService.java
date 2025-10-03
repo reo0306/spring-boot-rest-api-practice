@@ -24,7 +24,7 @@ public class ItemService {
     public Item getItem(String itemId) {
         for (Item allItem : allItems) {
             if (allItem.getItemId().equals(itemId)) {
-                return (Item) allItem;
+                return allItem;
             }
         }
         return null;
@@ -32,5 +32,11 @@ public class ItemService {
 
     public void addItem(Item item) {
         allItems.add(item);
+    }
+
+    public void updateItem(String itemId, Item item) {
+        for (int i = 0; i < allItems.size(); i++) {
+            if (allItems.get(i).getItemId().equals(itemId)) allItems.set(i, item);
+        }
     }
 }
