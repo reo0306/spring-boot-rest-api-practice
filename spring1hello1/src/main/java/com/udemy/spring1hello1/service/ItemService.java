@@ -1,46 +1,41 @@
 package com.udemy.spring1hello1.service;
 
 import com.udemy.spring1hello1.model.Item;
+import com.udemy.spring1hello1.repo.ItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemService {
-    private final List<Item> allItems =  new ArrayList<>(Arrays.asList(
-            new Item("10001", "ネックレス", "ジュエル"),
-                new Item("10002", "パーカー", "ファッション"),
-                new Item("10003", "フェイスクリーム", "ビューティー"),
-                new Item("10004", "サプリメント", "ヘルス"),
-                new Item("10005", "ブルーベリー", "フード")
-        ));
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     public List<Item> getAllItems() {
+        List<Item> allItems = new ArrayList<>();
+        itemRepository.findAll().forEach(allItems::add);
+
         return allItems;
     }
 
-    public Item getItem(String itemId) {
-        for (Item allItem : allItems) {
-            if (allItem.getItemId().equals(itemId)) {
-                return allItem;
-            }
-        }
-        return null;
+    public Optional getItem(Long itemId) {
+        return itemRepository.findById(itemId);
     }
 
     public void addItem(Item item) {
-        allItems.add(item);
+        itemRepository.save(item);
     }
 
-    public void updateItem(String itemId, Item item) {
-        for (int i = 0; i < allItems.size(); i++) {
-            if (allItems.get(i).getItemId().equals(itemId)) allItems.set(i, item);
-        }
+    public void updateItem(Long itemId, Item item) {
+        itemRepository.findById(itemId).get();
+        itemRepository.save(item);
     }
 
-    public void deleteItem(String itemId) {
-        allItems.removeIf(i -> i.getItemId().equals(itemId));
+    public void deleteItem(Long itemId) {
+        itemRepository.deleteById(itemId);
     }
 }
