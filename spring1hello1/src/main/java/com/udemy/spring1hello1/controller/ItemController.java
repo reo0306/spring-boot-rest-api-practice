@@ -1,11 +1,11 @@
 package com.udemy.spring1hello1.controller;
 
+import com.udemy.spring1hello1.exception.ItemNotFoundException;
 import com.udemy.spring1hello1.model.Item;
 import com.udemy.spring1hello1.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -20,8 +20,8 @@ public class ItemController {
     }
 
     @GetMapping("/items/{itemId}")
-    public Item getItem(@PathVariable("itemId") String itemId) {
-        return itemService.getItem(itemId);
+    public Item getItem(@PathVariable("itemId") Long itemId) {
+        return itemService.getItem(itemId).orElseThrow(() -> new ItemNotFoundException(itemId));
     }
 
     @PostMapping("/items")
@@ -30,12 +30,12 @@ public class ItemController {
     }
 
     @PutMapping("/items/{itemId}")
-    public void updateItem(@RequestBody Item item, @PathVariable("itemId") String itemId) {
+    public void updateItem(@RequestBody Item item, @PathVariable("itemId") Long itemId) {
         itemService.updateItem(itemId, item);
     }
 
     @DeleteMapping("/items/{itemId}")
-    public void deleteItem(@PathVariable("itemId") String itemId) {
+    public void deleteItem(@PathVariable("itemId") Long itemId) {
         itemService.deleteItem(itemId);
     }
 

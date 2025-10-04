@@ -14,6 +14,9 @@ public class Item {
     private String itemName;
     private String itemCategory;
 
+    public Item() {
+    }
+
     public Item(String itemName, String itemCategory) {
         this.itemName = itemName;
         this.itemCategory = itemCategory;
