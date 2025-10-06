@@ -22,6 +22,8 @@ dependencies {
     // データベースアクセスとORM (Hibernate) のためのコアライブラリ
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+    // --- Spring Cache Abstraction コア ---
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
     // MySQLデータベースに接続するためのJDBCドライバ
     runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

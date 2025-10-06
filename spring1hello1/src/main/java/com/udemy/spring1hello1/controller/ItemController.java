@@ -4,6 +4,7 @@ import com.udemy.spring1hello1.exception.ItemNotFoundException;
 import com.udemy.spring1hello1.model.Item;
 import com.udemy.spring1hello1.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,11 +15,13 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    @Cacheable("getItems")
     @GetMapping("/items")
     public List<Item> getAllItems() {
         return itemService.getAllItems();
     }
 
+    @Cacheable(value="getItem", key="#itemId")
     @GetMapping("/items/{itemId}")
     public Item getItem(@PathVariable("itemId") Long itemId) {
         return itemService.getItem(itemId).orElseThrow(() -> new ItemNotFoundException(itemId));
