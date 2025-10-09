@@ -1,6 +1,7 @@
 package com.udemy.spring1hello1.controller;
 
 import com.udemy.spring1hello1.exception.ItemNotFoundException;
+import com.udemy.spring1hello1.model.HelloMessage;
 import com.udemy.spring1hello1.model.Item;
 import com.udemy.spring1hello1.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +43,8 @@ public class ItemController {
         itemService.deleteItem(itemId);
     }
 
+    @GetMapping("/callHello")
+    public HelloMessage callHello() {
+        return itemService.getHelloResponse();
+    }
 }

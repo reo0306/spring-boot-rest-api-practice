@@ -1,12 +1,15 @@
 package com.udemy.spring1hello1.service;
 
+import com.udemy.spring1hello1.model.HelloMessage;
 import com.udemy.spring1hello1.model.Item;
 import com.udemy.spring1hello1.repo.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,12 @@ public class ItemService {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    private RestTemplate restTemplate;
+
+    public ItemService(RestTemplateBuilder restTemplateBuilder) {
+        this.restTemplate = restTemplateBuilder.build();
+    }
 
     @Cacheable("geItems")
     public List<Item> getAllItems() {
@@ -63,5 +72,14 @@ public class ItemService {
     })
     public void deleteItem(Long itemId) {
         itemRepository.deleteById(itemId);
+    }
+
+    public HelloMessage getHelloResponse() {
+        String URL = "http://localhost:8081/hello";
+        String hello = restTemplate.getForObject(URL, String.class);
+
+        HelloMessage retHello = new HelloMessage(hello);
+
+        return retHello;
     }
 }
