@@ -1,4 +1,5 @@
 plugins {
+    id 'war'
 	id 'java'
 	id 'org.springframework.boot' version '3.5.6'
 	id 'io.spring.dependency-management' version '1.1.7'
@@ -24,10 +25,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     // --- Spring Cache Abstraction コア ---
     implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-devtools'
     // MySQLデータベースに接続するためのJDBCドライバ
     runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+}
+
+war {
+    archiveFileName = 'spring-item.war'
 }
 
 tasks.named('test') {
