@@ -3,6 +3,7 @@ package com.udemy.design.command;
 public class RemoteControl {
     Command[] onCommands;
     Command[] offCommands;
+    Command undoCommand;
 
     public RemoteControl() {
         onCommands = new Command[7];
@@ -13,6 +14,8 @@ public class RemoteControl {
             onCommands[i] = noCommand;
             offCommands[i] = noCommand;
         }
+
+        undoCommand = noCommand;
     }
 
     public void setCommand(int slot, Command onCommand, Command offCommand) {
@@ -22,10 +25,16 @@ public class RemoteControl {
 
     public void onButtonWasPushed(int slot) {
         onCommands[slot].execute();
+        undoCommand = onCommands[slot];
     }
 
     public void offButtonWasPushed(int slot) {
         offCommands[slot].execute();
+        undoCommand = offCommands[slot];
+    }
+
+    public void undoButtonWasPushed() {
+        undoCommand.undo();
     }
 
     public String toString() {
@@ -33,8 +42,11 @@ public class RemoteControl {
         stringBuffer.append("\n-----リモコン----\n");
         for (int i = 0; i < onCommands.length; i++) {
             stringBuffer.append(
-                    " [スロット").append(i).append("] ").append(onCommands[i].getClass().getName())
-                    .append(" ").append(offCommands[i].getClass().getName()).append("\n");
+                    " [スロット").append(i).append("] ")
+                    .append(onCommands[i].getClass().getName())
+                    .append(" ").append(offCommands[i].getClass().getName())
+                    .append(" ").append(undoCommand.getClass().getName())
+                    .append("\n");
         }
         return stringBuffer.toString();
     }

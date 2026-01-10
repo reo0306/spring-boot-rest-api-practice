@@ -12,6 +12,6 @@ public class Light {
     }
 
     public void off() {
-        System.out.println(name + "照明が消えています");
+        System.out.println(name + " 照明が消えています");
     }
 }
