@@ -1,6 +1,8 @@
 package com.udemy.design.iterator;
 
-public class DinerMenuIterator implements Iterator {
+import java.util.Iterator;
+
+public class DinerMenuIterator implements Iterator<MenuItem> {
     MenuItem[] items;
     int position = 0;
 
@@ -16,5 +18,9 @@ public class DinerMenuIterator implements Iterator {
 
     public boolean hasNext() {
         return position < items.length && items[position] != null;
+    }
+
+    public void remove() {
+        throw new UnsupportedOperationException("メニューを削除できない");
     }
 }
