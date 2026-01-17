@@ -1,13 +1,16 @@
-package com.udemy.design.iterator;
+package com.udemy.design.composite;
+
+import com.udemy.design.iterator.Menu;
+import com.udemy.design.iterator.MenuItem;
 
 import java.util.Iterator;
 
 public class Waitress {
-    Menu pancakeHouseMenu;
-    Menu dinerMenu;
-    Menu cafeMenu;
+    com.udemy.design.iterator.Menu pancakeHouseMenu;
+    com.udemy.design.iterator.Menu dinerMenu;
+    com.udemy.design.iterator.Menu cafeMenu;
 
-    public Waitress(Menu pancakeHouseMenu, Menu dinerMenu, Menu careMenu) {
+    public Waitress(com.udemy.design.iterator.Menu pancakeHouseMenu, com.udemy.design.iterator.Menu dinerMenu, Menu careMenu) {
         this.pancakeHouseMenu = pancakeHouseMenu;
         this.dinerMenu = dinerMenu;
         this.cafeMenu = careMenu;

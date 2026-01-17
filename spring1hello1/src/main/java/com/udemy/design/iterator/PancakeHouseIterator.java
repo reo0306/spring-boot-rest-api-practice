@@ -2,7 +2,7 @@ package com.udemy.design.iterator;
 
 import java.util.ArrayList;
 
-public class PancakeHouseIterator implements Iterator {
+public class PancakeHouseIterator implements com.udemy.design.iterator.OriginalIterator {
     ArrayList<MenuItem> items;
     int position = 0;
 

@@ -1,6 +1,6 @@
 package com.udemy.design.iterator;
 
-public interface Iterator {
+public interface OriginalIterator {
     boolean hasNext();
     MenuItem next();
 }

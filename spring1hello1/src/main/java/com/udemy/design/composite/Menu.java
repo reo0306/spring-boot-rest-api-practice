@@ -1,14 +1,12 @@
-package com.udemy.design.iterator;
+package com.udemy.design.composite;
 
-import com.udemy.design.composite.MenuComponent;
-
-public class MenuItem extends MenuComponent {
+public class Menu extends MenuComponent {
     String name;
     String description;
     boolean vegetarian;
     double price;
 
-    public MenuItem(String name, String description, boolean vegetarian, double price) {
+    public Menu(String name, String description, boolean vegetarian, double price) {
         this.name = name;
         this.description = description;
         this.vegetarian = vegetarian;
@@ -36,9 +34,9 @@ public class MenuItem extends MenuComponent {
     }
 
     public void print() {
-        System.out.print(" " + getName());
+        System.out.println(" " + getName());
         if (isVegetarian()) {
-            System.out.print("(v)");
+            System.out.println("(v)");
         }
         System.out.println("、" + getPrice());
         System.out.println("   -- " + getDescription());
