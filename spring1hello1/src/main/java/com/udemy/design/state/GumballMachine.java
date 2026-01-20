@@ -37,6 +37,26 @@ public class GumballMachine {
        this.state = state;
     }
 
+    public State getSoldState() {
+        return soldState;
+    }
+
+    public State getHasQuarterState() {
+        return hasQuarterState;
+    }
+
+    public State getNoQuarterState() {
+        return noQuarterState;
+    }
+
+    public State getSoldOutState() {
+        return soldOutState;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
     void releaseBall() {
         System.out.println("ガムボールがスロットから出てきます");
         if (count != 0) {
