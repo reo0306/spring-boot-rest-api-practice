@@ -14,6 +14,6 @@ public class DuckFactory extends AbstractDuckFactory {
     }
 
     public Quackable createRubberDuck() {
-        return new RedheadDuck();
+        return new RubberDuck();
     }
 }
